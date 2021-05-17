@@ -1,4 +1,4 @@
-FROM itachi1706/android-alpine-sdk:base-ndk
+FROM itachi1706/android-alpine-sdk:base
 
 ENV ANDROID_HOME=/usr/local/android-sdk
 ENV COMPILE_SDK=30 BUILD_TOOLS=30.0.3
