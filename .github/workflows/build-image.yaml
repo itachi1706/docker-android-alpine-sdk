@@ -10,7 +10,7 @@ jobs:
     strategy:
       matrix: 
         sdk: [24, 25, 26, 27, 28, 29, 30]
-    name: SDK {{ matrix.sdk }}
+    name: SDK ${{ matrix.sdk }}
     steps:
       - uses: actions/checkout@v2
       - name: Setup Docker Buildx
@@ -21,16 +21,19 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: Build and Push Docker Image
+        env:
+          SDKVER: ${{ matrix.sdk }}
         run: |
+          docker build --pull -t itachi1706/docker-android-alpine-sdk:base-ndk -f ndk.Dockerfile .
           cd history
           chmod +x build.sh
-          ./build.sh ${{ matrix.sdk }}.txt Dockerfile
+          ./build.sh $SDKVER.txt Dockerfile
   android-build-no-ndk:
     runs-on: ubuntu-latest
     strategy:
       matrix: 
         sdk: [24, 25, 26, 27, 28, 29, 30]
-    name: SDK {{ matrix.sdk }} without NDK
+    name: SDK ${{ matrix.sdk }} without NDK
     steps:
       - uses: actions/checkout@v2
       - name: Setup Docker Buildx
@@ -41,7 +44,10 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: Build and Push Docker Image
+        env:
+          SDKVER: ${{ matrix.sdk }}
         run: |
+          docker build --pull -t itachi1706/docker-android-alpine-sdk:base -f Dockerfile .
           cd history
           chmod +x build-nondk.sh
-          ./build-nondk.sh ${{ matrix.sdk }}.txt nondk.Dockerfile
+          ./build-nondk.sh $SDKVER.txt nondk.Dockerfile
