@@ -7,8 +7,9 @@ on:
 jobs:
   android-build-ndk:
     runs-on: ubuntu-latest
-    matrix: 
-      sdk: [24, 25, 26, 27, 28, 29, 30]
+    strategy:
+      matrix: 
+        sdk: [24, 25, 26, 27, 28, 29, 30]
     name: SDK {{ matrix.sdk }}
     steps:
       - uses: actions/checkout@v2
@@ -26,8 +27,9 @@ jobs:
           ./build.sh ${{ matrix.sdk }}.txt Dockerfile
   android-build-no-ndk:
     runs-on: ubuntu-latest
-    matrix: 
-      sdk: [24, 25, 26, 27, 28, 29, 30]
+    strategy:
+      matrix: 
+        sdk: [24, 25, 26, 27, 28, 29, 30]
     name: SDK {{ matrix.sdk }} without NDK
     steps:
       - uses: actions/checkout@v2
