@@ -18,5 +18,7 @@ RUN wget -q -O sdk.zip https://dl.google.com/android/repository/commandlinetools
     touch /root/.android/repositories.cfg && \
     rm sdk.zip
 WORKDIR $ANDROID_HOME
-RUN yes | $ANDROID_HOME/cmdline-tools/tools/bin/sdkmanager --licenses
-RUN echo y | $ANDROID_HOME/cmdline-tools/tools/bin/sdkmanager "platform-tools" >/dev/null
+
+ENV PATH="$ANDROID_HOME/cmdline-tools/tools/bin:${PATH}"
+RUN yes | sdkmanager --licenses
+RUN echo y | sdkmanager "platform-tools" >/dev/null
