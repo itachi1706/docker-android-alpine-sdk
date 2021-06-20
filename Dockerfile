@@ -1,6 +1,6 @@
 FROM openjdk:8-jdk-alpine
 
-ENV ANDROID_SDK_TOOLS=6858069 ANDROID_HOME=/usr/local/android-sdk GLIBC_VERSION=2.33-r0
+ENV ANDROID_SDK_TOOLS=7302050 ANDROID_HOME=/usr/local/android-sdk GLIBC_VERSION=2.33-r0
 
 WORKDIR /usr/local/glibc
 RUN apk --no-cache add ca-certificates wget unzip && \
