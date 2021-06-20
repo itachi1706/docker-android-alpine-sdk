@@ -1,0 +1,171 @@
+name: Update autobuild images
+
+on:
+  push:
+    branches: [ master ]
+  schedule:
+    - cron: '0 4 * * 0'
+  workflow_dispatch:
+
+jobs:
+  base:
+    runs-on: ubuntu-latest
+    name: Base Image
+    steps:
+    - uses: actions/checkout@v2
+    - name: Login to DockerHub
+      uses: docker/login-action@v1
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+    - name: Build and push Docker images
+      uses: docker/build-push-action@v2.5.0
+      with:
+        context: .
+        file: Dockerfile
+        pull: true
+        push: true
+        tags: itachi1706/android-alpine-sdk:base
+# Depends on base
+  basendk:
+    runs-on: ubuntu-latest
+    name: Base NDK Image
+    needs: base
+    steps:
+    - uses: actions/checkout@v2
+    - name: Login to DockerHub
+      uses: docker/login-action@v1
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+    - name: Build and push Docker images
+      uses: docker/build-push-action@v2.5.0
+      with:
+        context: .
+        file: ndk.Dockerfile
+        pull: true
+        push: true
+        tags: itachi1706/android-alpine-sdk:base-ndk
+        
+# Each version
+# Android 30/Latest
+  android-30-ndk:
+    runs-on: ubuntu-latest
+    name: Android 30 NDK Image
+    needs: basendk
+    steps:
+    - uses: actions/checkout@v2
+    - name: Login to DockerHub
+      uses: docker/login-action@v1
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+    - name: Build and push Docker images
+      uses: docker/build-push-action@v2.5.0
+      with:
+        context: ./30/30.0.3/
+        file: ./30/30.0.3/Dockerfile
+        pull: true
+        push: true
+        tags: |
+          itachi1706/android-alpine-sdk:android-30_bt-latest
+          itachi1706/android-alpine-sdk:latest
+  android-30-nondk:
+    runs-on: ubuntu-latest
+    name: Android 30 Image
+    needs: base
+    steps:
+    - uses: actions/checkout@v2
+    - name: Login to DockerHub
+      uses: docker/login-action@v1
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+    - name: Build and push Docker images
+      uses: docker/build-push-action@v2.5.0
+      with:
+        context: ./30/30.0.3/
+        file: ./30/30.0.3/nondk.Dockerfile
+        pull: true
+        push: true
+        tags: |
+          itachi1706/android-alpine-sdk:android-30_bt-latest_no-ndk
+          itachi1706/android-alpine-sdk:latest_no-ndk
+# Android 29
+  android-29-ndk:
+    runs-on: ubuntu-latest
+    name: Android 29 NDK Image
+    needs: basendk
+    steps:
+    - uses: actions/checkout@v2
+    - name: Login to DockerHub
+      uses: docker/login-action@v1
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+    - name: Build and push Docker images
+      uses: docker/build-push-action@v2.5.0
+      with:
+        context: ./29/29.0.3/
+        file: ./29/29.0.3/Dockerfile
+        pull: true
+        push: true
+        tags: itachi1706/android-alpine-sdk:android-29_bt-latest
+  android-29-nondk:
+    runs-on: ubuntu-latest
+    name: Android 29 Image
+    needs: base
+    steps:
+    - uses: actions/checkout@v2
+    - name: Login to DockerHub
+      uses: docker/login-action@v1
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+    - name: Build and push Docker images
+      uses: docker/build-push-action@v2.5.0
+      with:
+        context: ./29/29.0.3/
+        file: ./29/29.0.3/nondk.Dockerfile
+        pull: true
+        push: true
+        tags: itachi1706/android-alpine-sdk:android-29_bt-latest_no-ndk
+# Android 28
+  android-28-ndk:
+    runs-on: ubuntu-latest
+    name: Android 28 NDK Image
+    needs: basendk
+    steps:
+    - uses: actions/checkout@v2
+    - name: Login to DockerHub
+      uses: docker/login-action@v1
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+    - name: Build and push Docker images
+      uses: docker/build-push-action@v2.5.0
+      with:
+        context: ./28/28.0.3/
+        file: ./28/28.0.3/Dockerfile
+        pull: true
+        push: true
+        tags: itachi1706/android-alpine-sdk:android-28_bt-latest
+  android-28-nondk:
+    runs-on: ubuntu-latest
+    name: Android 28 Image
+    needs: base
+    steps:
+    - uses: actions/checkout@v2
+    - name: Login to DockerHub
+      uses: docker/login-action@v1
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+    - name: Build and push Docker images
+      uses: docker/build-push-action@v2.5.0
+      with:
+        context: ./28/28.0.3/
+        file: ./28/28.0.3/nondk.Dockerfile
+        pull: true
+        push: true
+        tags: itachi1706/android-alpine-sdk:android-28_bt-latest_no-ndk
