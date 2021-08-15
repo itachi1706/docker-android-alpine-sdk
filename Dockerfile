@@ -13,12 +13,12 @@ RUN apk --no-cache add ca-certificates wget unzip && \
 WORKDIR $ANDROID_HOME/cmdline-tools
 RUN wget -q -O sdk.zip https://dl.google.com/android/repository/commandlinetools-linux-${ANDROID_SDK_TOOLS}_latest.zip && \
     unzip -q sdk.zip && \
-    mv cmdline-tools tools && \
+    mv cmdline-tools latest && \
     mkdir -p /root/.android && \
     touch /root/.android/repositories.cfg && \
     rm sdk.zip
 WORKDIR $ANDROID_HOME
 
-ENV PATH="$ANDROID_HOME/cmdline-tools/tools/bin:${PATH}"
+ENV PATH="$ANDROID_HOME/cmdline-tools/latest/bin:${PATH}"
 RUN yes | sdkmanager --licenses
 RUN echo y | sdkmanager "platform-tools" >/dev/null
