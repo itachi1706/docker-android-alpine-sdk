@@ -1,4 +1,5 @@
-FROM openjdk:8-jdk-alpine
+#FROM openjdk:8-jdk-alpine
+FROM adoptopenjdk/openjdk11:x86_64-alpine-jdk-11.0.12_7-slim
 
 ENV ANDROID_SDK_TOOLS=7302050 ANDROID_HOME=/usr/local/android-sdk GLIBC_VERSION=2.33-r0
 
