@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix: 
-        sdk: [0, 23, 24, 25, 26, 27, 28, 29, 30]
+        sdk: [0, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33]
     name: SDK ${{ matrix.sdk }}
     steps:
       - uses: actions/checkout@v2
@@ -32,7 +32,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix: 
-        sdk: [0, 23, 24, 25, 26, 27, 28, 29, 30]
+        sdk: [0, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33]
     name: SDK ${{ matrix.sdk }} without NDK
     steps:
       - uses: actions/checkout@v2
