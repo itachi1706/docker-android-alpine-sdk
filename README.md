@@ -6,11 +6,17 @@ This contains basic alpine-based Android Docker Images with NDK. Only the last 3
 Note: Non NDK images will have `_no-ndk` appended on it. NDK images will have NDK 22.1.7171670 installed by default and comes with their corresponding versions of build tools
 
 ## Latest Supported Versions
-* Android 11: `android-30_bt-latest` 
-* Android 10: `android-29_bt-latest`
-* Android 9 (Pie): `android-28_bt-latest`
+* Android 13: `android-33_bt-latest` 
+* Android 12L: `android-32_bt-latest`
+* Android 12: `android-31_bt-latest`
+* Android 11: `android-30_bt-latest` (Will be deprecated on 2022-12-31)   
+* Android 10: `android-29_bt-latest` (Will be deprecated on 2022-12-31)  
+* Android 9 (Pie): `android-28_bt-latest` (Will be deprecated on 2022-12-31)  
 
 ## Other Versions
+* Android 13: `android-33_bt-33.0.0`
+* Android 12L: `android-32_bt-32.0.0`
+* Android 12: `android-31_bt-31.0.0`
 * Android 11: `android-30_bt-30.0.3`, `android-30_bt-30.0.2`, `android-30_bt-30.0.1`, `android-30_bt-30.0.0`
 * Android 10: `android-29_bt-29.0.3`, `android-29_bt-29.0.2`, `android-29_bt-29.0.1`, `android-29_bt-29.0.0`
 * Android 9 (Pie): `android-28_bt-28.0.3`, `android-28_bt-28.0.2`, `android-28_bt-28.0.1`, `android-28_bt-28.0.0`

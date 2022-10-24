@@ -48,7 +48,132 @@ jobs:
         tags: itachi1706/android-alpine-sdk:base-ndk
         
 # Each version
-# Android 30/Latest
+# Android 33/LATEST
+  android-33-ndk:
+    runs-on: ubuntu-latest
+    name: Android 33 NDK Image
+    needs: basendk
+    steps:
+    - uses: actions/checkout@v2
+    - name: Login to DockerHub
+      uses: docker/login-action@v1
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+    - name: Build and push Docker images
+      uses: docker/build-push-action@v2.5.0
+      with:
+        context: ./33/33.0.0/
+        file: ./33/33.0.0/Dockerfile
+        pull: true
+        push: true
+        tags: |
+          itachi1706/android-alpine-sdk:android-33_bt-latest
+          itachi1706/android-alpine-sdk:latest
+  android-33-nondk:
+    runs-on: ubuntu-latest
+    name: Android 33 Image
+    needs: base
+    steps:
+    - uses: actions/checkout@v2
+    - name: Login to DockerHub
+      uses: docker/login-action@v1
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+    - name: Build and push Docker images
+      uses: docker/build-push-action@v2.5.0
+      with:
+        context: ./33/33.0.0/
+        file: ./33/33.0.0/nondk.Dockerfile
+        pull: true
+        push: true
+        tags: |
+          itachi1706/android-alpine-sdk:android-33_bt-latest_no-ndk
+          itachi1706/android-alpine-sdk:latest_no-ndk
+# Android 32
+  android-32-ndk:
+    runs-on: ubuntu-latest
+    name: Android 32 NDK Image
+    needs: basendk
+    steps:
+    - uses: actions/checkout@v2
+    - name: Login to DockerHub
+      uses: docker/login-action@v1
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+    - name: Build and push Docker images
+      uses: docker/build-push-action@v2.5.0
+      with:
+        context: ./32/32.0.0/
+        file: ./32/32.0.0/Dockerfile
+        pull: true
+        push: true
+        tags: |
+          itachi1706/android-alpine-sdk:android-32_bt-latest
+  android-32-nondk:
+    runs-on: ubuntu-latest
+    name: Android 32 Image
+    needs: base
+    steps:
+    - uses: actions/checkout@v2
+    - name: Login to DockerHub
+      uses: docker/login-action@v1
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+    - name: Build and push Docker images
+      uses: docker/build-push-action@v2.5.0
+      with:
+        context: ./32/32.0.0/
+        file: ./32/32.0.0/nondk.Dockerfile
+        pull: true
+        push: true
+        tags: |
+          itachi1706/android-alpine-sdk:android-32_bt-latest_no-ndk
+# Android 31
+  android-31-ndk:
+    runs-on: ubuntu-latest
+    name: Android 31 NDK Image
+    needs: basendk
+    steps:
+    - uses: actions/checkout@v2
+    - name: Login to DockerHub
+      uses: docker/login-action@v1
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+    - name: Build and push Docker images
+      uses: docker/build-push-action@v2.5.0
+      with:
+        context: ./31/31.0.0/
+        file: ./31/31.0.0/Dockerfile
+        pull: true
+        push: true
+        tags: |
+          itachi1706/android-alpine-sdk:android-31_bt-latest
+  android-31-nondk:
+    runs-on: ubuntu-latest
+    name: Android 31 Image
+    needs: base
+    steps:
+    - uses: actions/checkout@v2
+    - name: Login to DockerHub
+      uses: docker/login-action@v1
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+    - name: Build and push Docker images
+      uses: docker/build-push-action@v2.5.0
+      with:
+        context: ./31/31.0.0/
+        file: ./31/31.0.0/nondk.Dockerfile
+        pull: true
+        push: true
+        tags: |
+          itachi1706/android-alpine-sdk:android-31_bt-latest_no-ndk
+# Android 30
   android-30-ndk:
     runs-on: ubuntu-latest
     name: Android 30 NDK Image
@@ -69,7 +194,6 @@ jobs:
         push: true
         tags: |
           itachi1706/android-alpine-sdk:android-30_bt-latest
-          itachi1706/android-alpine-sdk:latest
   android-30-nondk:
     runs-on: ubuntu-latest
     name: Android 30 Image
@@ -90,7 +214,6 @@ jobs:
         push: true
         tags: |
           itachi1706/android-alpine-sdk:android-30_bt-latest_no-ndk
-          itachi1706/android-alpine-sdk:latest_no-ndk
 # Android 29
   android-29-ndk:
     runs-on: ubuntu-latest
