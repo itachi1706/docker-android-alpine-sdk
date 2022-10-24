@@ -12,7 +12,7 @@ jobs:
         sdk: [0, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33]
     name: SDK ${{ matrix.sdk }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Setup Docker Buildx
         uses: docker/setup-buildx-action@v2
       - name: Login to DockerHub
@@ -35,7 +35,7 @@ jobs:
         sdk: [0, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33]
     name: SDK ${{ matrix.sdk }} without NDK
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Setup Docker Buildx
         uses: docker/setup-buildx-action@v2
       - name: Login to DockerHub
