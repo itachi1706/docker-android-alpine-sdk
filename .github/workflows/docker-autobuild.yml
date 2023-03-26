@@ -63,8 +63,8 @@ jobs:
     - name: Build and push Docker images
       uses: docker/build-push-action@v4.0.0
       with:
-        context: ./33/33.0.0/
-        file: ./33/33.0.0/Dockerfile
+        context: ./33/33.0.2/
+        file: ./33/33.0.2/Dockerfile
         pull: true
         push: true
         tags: |
@@ -84,8 +84,8 @@ jobs:
     - name: Build and push Docker images
       uses: docker/build-push-action@v4.0.0
       with:
-        context: ./33/33.0.0/
-        file: ./33/33.0.0/nondk.Dockerfile
+        context: ./33/33.0.2/
+        file: ./33/33.0.2/nondk.Dockerfile
         pull: true
         push: true
         tags: |
