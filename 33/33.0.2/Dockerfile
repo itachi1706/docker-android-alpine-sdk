@@ -1,7 +1,7 @@
 FROM itachi1706/android-alpine-sdk:base-ndk
 
 ENV ANDROID_HOME=/usr/local/android-sdk
-ENV COMPILE_SDK=33 BUILD_TOOLS=33.0.0
+ENV COMPILE_SDK=33 BUILD_TOOLS=33.0.2
 
 
 RUN echo y | sdkmanager "platforms;android-${COMPILE_SDK}" >/dev/null
