@@ -18,8 +18,8 @@ while read csv; do
     tag="$DOCKER_REPO:${strarr[2]}"
 
     echo "Building Android SDK $comp with Build Tools $bt image using $dockerfile and tagging it as $tag"
-    docker build --pull -t $tag -f $dockerfile --build-arg COMPILE_SDK=$comp --build-arg BUILD_TOOLS=$bt .
-    docker push $tag
-    docker rmi $tag
+    # docker build --pull -t $tag -f $dockerfile --build-arg COMPILE_SDK=$comp --build-arg BUILD_TOOLS=$bt .
+    # docker push $tag
+    # docker rmi $tag
     
 done <$file
